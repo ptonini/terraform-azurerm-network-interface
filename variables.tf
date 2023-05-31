@@ -8,7 +8,7 @@ variable "security_group_id" {}
 
 variable "public_ip" {
   default = false
-  type = bool
+  type    = bool
 }
 
 variable "public_ip_sku" {
