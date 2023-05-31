@@ -18,6 +18,11 @@ resource "azurerm_network_interface" "this" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id = try(azurerm_public_ip.this[0].id, null)
   }
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
 
 resource "azurerm_network_interface_security_group_association" "this" {
