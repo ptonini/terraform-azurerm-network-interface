@@ -1,6 +1,6 @@
 resource "azurerm_public_ip" "this" {
   count               = var.public_ip ? 1 : 0
-  name                = var.name
+  name                = "${var.name}-public-ip"
   resource_group_name = var.rg.name
   location            = var.rg.location
   sku                 = var.public_ip_sku
@@ -17,7 +17,7 @@ resource "azurerm_public_ip" "this" {
 }
 
 resource "azurerm_network_interface" "this" {
-  name                = "${var.name}-public-ip"
+  name                = var.name
   location            = var.rg.location
   resource_group_name = var.rg.name
   ip_configuration {
