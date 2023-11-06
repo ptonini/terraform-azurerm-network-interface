@@ -8,13 +8,16 @@ resource "azurerm_public_ip" "this" {
   zones               = [1, 2, 3]
   lifecycle {
     ignore_changes = [
-      tags
+      tags.business_unit,
+      tags.environment,
+      tags.product,
+      tags.subscription_type
     ]
   }
 }
 
 resource "azurerm_network_interface" "this" {
-  name                = var.name
+  name                = "${var.name}-public-ip"
   location            = var.rg.location
   resource_group_name = var.rg.name
   ip_configuration {
@@ -25,7 +28,10 @@ resource "azurerm_network_interface" "this" {
   }
   lifecycle {
     ignore_changes = [
-      tags
+      tags.business_unit,
+      tags.environment,
+      tags.product,
+      tags.subscription_type
     ]
   }
 }
